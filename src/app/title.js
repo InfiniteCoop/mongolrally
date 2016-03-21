@@ -6,14 +6,10 @@ $(document).ready(function() {
 		});
 	});
 
-
-
-		$("#bt").click(function() {
+	$("#bt").click(function() {
 		$(".sliding-panel").toggleClass("panel-active");
 		console.log("Sliding panel clicked");
 	});
-
-});	
 
 	$(window).mousewheel(function() {
 		console.log("Mousewheel");
@@ -21,3 +17,5 @@ $(document).ready(function() {
 			$("html, body").animate({"scrollTop":"0px"},100);
 		});
 	});
+
+});	
