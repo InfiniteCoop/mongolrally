@@ -33,12 +33,25 @@
 		-->
 
 		<script type="text/javascript">
+			var appID;
+
+			if (navigator.userAgent.match(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i)) {
+				console.log("Mobile device detected");
+				appID = '66271b7cbd24488aa1841c8633d6403c';
+			}
+			else {
+				console.log("Desktop device detected");
+				appID = 'f9bfd5bb5f3244ce9e655de57b2e694d';
+			}
+		</script>
+
+		<script type="text/javascript">
 			//-------------------------------------------------------------------------------------------
 			//     Application configuration (ignored on ArcGIS Online, Portal and during development)
 			//-------------------------------------------------------------------------------------------
 			var configOptions = {
 				// Enter an application ID created through the Map Journal builder
-				appid: "f9bfd5bb5f3244ce9e655de57b2e694d",
+				appid: appID,
 				// Optionally to secure Journal's access, use an OAuth application ID (example: 6gyOg377fLUhUk6f)
 				// User will need to sign-in to access the viewer even if your application is public
 				oAuthAppId: "",
