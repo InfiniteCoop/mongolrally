@@ -29,8 +29,11 @@ require([
 	// The application is ready
 	topic.subscribe("tpl-ready", function(){
 
-		// Custom Javascript to be executed when the application is ready goes here
-
+		//Toggle index map when overview button is clicked
+		$("#bt").click(function() {
+			$(".sliding-panel").toggleClass("panel-active");
+			console.log("Sliding panel clicked");
+		});
 
 		// CONFIGURATION VARIABLES START
 		// Update the label fields for those used in your CSV file. Be sure that it matches
@@ -81,16 +84,24 @@ require([
 
 
 			// Reset map extent when container is resized	
-				// 	var resizeTimer;
+			var resizeTimer;
+			var height = $("#index-map").height();
 
-				// 	indexMap.on("resize", function(){
+			indexMap.on("resize", function(){
 
-				// 		clearTimeout(resizeTimer);
-				// 		resizeTimer = setTimeout(function() {
-				// 			indexMap.setExtent(startExtent,true);
-				// 			indexMap.reposition();
-				// 		}, 500);
-				// 	});
+				if (height == $("#index-map").height()) {
+					console.log("Map width has changed; redrawing map");
+
+					clearTimeout(resizeTimer);
+					resizeTimer = setTimeout(function() {
+						indexMap.setExtent(startExtent,true);
+						indexMap.reposition();
+					}, 500);
+				}
+				else {
+					console.log("Map width has not changed; not redrawing map");
+				};
+			});
 		});
 
 		//Create line layer from Feature Service
