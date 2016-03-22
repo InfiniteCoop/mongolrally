@@ -6,11 +6,6 @@ $(document).ready(function() {
 		});
 	});
 
-	$("#bt").click(function() {
-		$(".sliding-panel").toggleClass("panel-active");
-		console.log("Sliding panel clicked");
-	});
-
 	$(window).mousewheel(function() {
 		console.log("Mousewheel");
 		$(".splash").slideUp("800", function() {
