@@ -235,6 +235,7 @@ div .scroll {
 	max-height: 400px;
 	cursor: pointer;
 	z-index: 9999;
+	opacity: 1;
 	-webkit-transition: all 1s ease;
 	-moz-transition: all 1s ease;
 	-o-transition: all 1s ease;
@@ -244,6 +245,7 @@ div .scroll {
 .panel-active {
 	position: relative;
 	height: 0px;
+	opacity: 0;
 }
 
 .panel-button {
