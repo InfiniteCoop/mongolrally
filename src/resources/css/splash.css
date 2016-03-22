@@ -22,6 +22,8 @@
 .splash-title {
 	color: #fff !important;
 	font-size: 6em !important;
+	padding-bottom: 14px;
+
 }
 
 .splash-subtitle {
@@ -29,14 +31,16 @@
 	text-shadow: none !important;
 	font-weight: lighter;
 	font-size: 3em;
-	padding: 10px 0px;
+	padding: 14px;
+
 }
 
 .splash-description-container {
 	position: relative;
 	padding: 10px 0px;
-	width: 70%;
-	left: 15%;
+	width: 50%;
+	left: 25%;
+	padding: 14px;
 }
 
 .splash-description {
@@ -169,7 +173,7 @@ a.splash-arrow:visited {
 	}
 	.splash-title {
 		font-size: 6em !important;
-		padding-bottom: 10px;
+		padding-bottom: 12px;
 	}
 
 	.splash-subtitle {
@@ -188,7 +192,7 @@ a.splash-arrow:visited {
 	}
 
 	.splash-social {
-		padding: 12px 0px;
+		padding: 14px 0px;
 	}
 }
 
