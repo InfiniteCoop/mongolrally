@@ -13,18 +13,14 @@
 	<link type="image/ico" rel="shortcut icon" href="resources/tpl/viewer/icons/favicon.ico">
 	<link type="image/ico" rel="icon"  href="resources/tpl/viewer/icons/favicon.ico">
 
-		<!--
-			To correctly reference your Map Journal in search engine:
-			 - create and fill out extensively an ArcGIS Online item that link to your final application
-			 - edit the following four tags as well as the title tag above on line 4
-			-->
+
 			<meta name="description" content="Three friends. 10,000 miles. 20 countries. Mongolia or bust! This is the story of a harebrained adventure from England to Mongolia.">
 
 			<!-- Facebook sharing -->
 			<meta property="og:type" content="article"/>
 			<meta property="og:title" content="Crossing the Rubikhan: A Mongol Rally Map Journal"/>
 			<meta property="og:description" content="Three friends. 10,000 miles. 20 countries. Mongolia or bust! This is the story of a harebrained adventure from England to Mongolia"/>
-			<meta property="og:image" content="http://www.arcgis.com/apps/MapJournal/resources/common/icons/esri-globe.png"/>
+			<meta property="og:image" content="resources/img/launch-img.jpg"/>
 
 		<!--
 			This application is released under the Apache License V2.0 by Esri http://www.esri.com/
@@ -32,6 +28,8 @@
 			https://github.com/Esri/map-journal-storytelling-template-js
 		-->
 
+
+		<!-- Check browser compatibility; load corresponding app (2D or 3D)-->
 		<script type="text/javascript">
 			var appID;
 
@@ -78,6 +76,7 @@
 			};
 			</script>
 
+			<!-- Load fonts and custom stylesheets -->
 			<link href='https://fonts.googleapis.com/css?family=Muli:400,400italic|Lora:400italic,700italic' rel='stylesheet' type='text/css'>
 			<link rel="stylesheet" href="resources/css/styles.css" type='text/css'>
 			<link rel="stylesheet" href="resources/css/splash.css" type='text/css'>
@@ -86,6 +85,7 @@
 
 		<body class="claro">
 
+			<!-- Custom splash page -->
 			<div class="splash">
 				<div class="splash-text-container">
 					<h1 class="splash-title">Crossing the Rubikhan</h1>
@@ -144,6 +144,7 @@
 										<button class="btn btn-xs btn-warning share-story"></button>
 									</span> -->
 
+									<!-- Sliding panel containing index map -->
 									<div class="sliding-panel">
 										<div id="index-map">
 											<p id="index-map-info"></p>

@@ -1,4 +1,6 @@
 $(document).ready(function() {
+
+	//Trigger slide animation on button click
 	$(".splash-arrow").click(function()
 	{
 		$(".splash").slideUp("800", function() {
@@ -6,6 +8,7 @@ $(document).ready(function() {
 		});
 	});
 
+	//Trigger slide animation on scroll
 	$(window).mousewheel(function() {
 		console.log("Mousewheel");
 		$(".splash").slideUp("800", function() {
