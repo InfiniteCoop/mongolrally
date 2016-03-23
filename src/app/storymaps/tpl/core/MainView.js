@@ -15,7 +15,6 @@ define(["lib-build/css!./MainView",
 		"storymaps/common/mapcontrols/overview/Overview",
 		// Autoplay
 		"storymaps/common/ui/autoplay/Autoplay",
-		
 		"lib-build/css!storymaps/common/_resources/font/sharing/css/fontello.css",
 		"lib-build/css!storymaps/common/utils/SocialSharing.css",
 		"lib-build/css!storymaps/common/ui/loadingIndicator/LoadingIndicator.css",
@@ -29,7 +28,9 @@ define(["lib-build/css!./MainView",
 		"lib-build/css!../ui/Common",
 		"lib-build/css!../ui/StoryText",
 		"lib-build/css!../ui/mobile/Common",
-		"lib-build/css!../ui/Responsive"
+		"lib-build/css!../ui/Responsive",
+		// Mongol Custom Code
+		"../mongolCustom/main"
 	], 
 	function (
 		viewCss,
