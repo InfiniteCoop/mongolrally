@@ -1,5 +1,4 @@
-// Loading all required dojo and esri modules used in index map
-require([
+define([
 	'dojo/topic',
 	'dojo/_base/array',
 	'dojo/dom-geometry',
@@ -10,8 +9,12 @@ require([
 	'esri/layers/FeatureLayer',
 	'esri/Color',
 	'esri/symbols/SimpleMarkerSymbol',
-	'esri/renderers/UniqueValueRenderer'
-	], function(
+	'esri/renderers/UniqueValueRenderer',
+	'lib-app/jquery',
+	'lib-app/jquery.mousewheel',
+	'lib-build/css!./css/styles.css'
+	],
+	function(
 		topic,
 		array,
 		domGeom,
@@ -23,11 +26,20 @@ require([
 		Color,
 		SimpleMarkerSymbol,
 		UniqueValueRenderer
-		) {
-	// Custom Javascript to be executed while the application is initializing goes here
+		){
 
 	// The application is ready
 	topic.subscribe("tpl-ready", function(){
+		
+		var showApp = function () {
+			$(".splash").slideUp("800", function() {
+				$(".content-wrapper").delay(100).animate({"opacity":"1.0"},800);
+			});
+		};
+
+		//Trigger slide animation on button click
+		$(".splash-arrow").on('click',showApp);
+		$('.splash').on('mousewheel',showApp);
 
 		//Toggle index map when overview button is clicked
 		$("#bt").click(function() {
@@ -100,7 +112,7 @@ require([
 				}
 				else {
 					console.log("Map width has not changed; not redrawing map");
-				};
+				}
 			});
 		});
 
@@ -110,7 +122,7 @@ require([
 		var countriesLayer = new FeatureLayer("http://services.arcgis.com/nzS0F0zdNLvs7nc8/arcgis/rest/services/VisitedCountriesGeneralized/FeatureServer/0");
 
 		// Load CSV File as point later
-		var indexMapLayer = csv = new CSVLayer(csvPath);
+		var indexMapLayer = new CSVLayer(csvPath);
 
 		// Create simple point symbols
 		var activeMarker =  new SimpleMarkerSymbol('solid', 12, null, activeMarkerColor);
@@ -181,7 +193,7 @@ require([
 
 		// Make sure selected point is on top.
 		function moveSelectedToFront(){
-			if (selectedGraphic) {
+			if (selectedGraphic && selectedGraphic.getDojoShape()) {
 				selectedGraphic.getDojoShape().moveToFront();
 			}
 		}

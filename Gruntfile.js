@@ -150,14 +150,6 @@
 			},
 			
 			copy: {
-				customExtra: {
-					files: [{
-						expand: true,
-						cwd: 'src',
-						src:['app/main.js', 'app/title.js', 'app/jquery.mousewheel.min.js'],
-						dest: 'deploy/'
-					}]
-				},
 				html: {
 					files: [{
 						expand: true,
@@ -438,10 +430,7 @@
 			
 			'copy:readme',
 			'clean:jsapioptim', 
-			'clean:fontello',
-
-			//Copy custom code
-			'copy:customExtra'
+			'clean:fontello'
 		]);
 		
 		/*

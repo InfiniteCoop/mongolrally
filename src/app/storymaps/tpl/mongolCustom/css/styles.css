@@ -275,7 +275,6 @@ div .scroll {
 }
 
 
-
 /* MOBILE STYLES */
 
 
@@ -284,19 +283,19 @@ div .scroll {
 }
 
 .floatingSwiper .title {
-    font-size: 1.85em;
-    color: #000 !important;
+	font-size: 1.85em;
+	color: #000 !important;
 }
 
 .shareBtns {
 	color: #000 !important;
 	opacity: 1 important;
-		-webkit-transition: all .5s ease;
+	-webkit-transition: all .5s ease;
 	-moz-transition: all .5s ease;
 	-o-transition: all .5s ease;
 	transition: all .5s ease;
 }
 
-.shareBtns:hover {
-	color: #0097fb;
+.swiper-slide .swiper-slide-visible .swiper-slide-active {
+	background-color: rgba(255,255,255,0.8) !important;
 }
