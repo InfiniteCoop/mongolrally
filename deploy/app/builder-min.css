@@ -3529,10 +3529,6 @@ p {
 	height: 110% !important;
 }
 
-.sidePanel {
-	overflow:hidden !important;
-}
-
 #sidePanel {
 	display: table-cell !important;
 	position: fixed !important;
@@ -3541,11 +3537,13 @@ p {
 	background-color: transparent !important;
 	z-index: 2 !important;
 	border-right: 0px solid !important;
-		overflow:hidden !important;
+	overflow-y:hidden !important;
 }
 
 .sidePanel .sections {
 	padding: 0px !important;
+	overflow-y: scroll !important;
+	-ms-overflow-style: none !important;
 }
 
 .sidePanel .sectionsWrapper {
@@ -3559,8 +3557,6 @@ p {
 #sidePanelInner {
 	border-right: 0px !important;
 	padding-left: 50px !important;
-	overflow-y:scroll !important;
-
 }
 
 .navDots {
