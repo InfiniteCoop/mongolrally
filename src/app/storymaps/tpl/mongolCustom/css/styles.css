@@ -279,10 +279,6 @@ div .scroll {
 /* MOBILE STYLES */
 
 
-.floatingSwiper .backdrop {
-	background-color: rgba(255,255,255,0.8) !important;
-}
-
 .floatingSwiper .title {
 	font-size: 1.85em;
 	color: #000 !important;

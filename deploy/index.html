@@ -103,14 +103,12 @@
 					position: relative;
 					width: 70%;
 					left: 15%;
-					top: 8vh;
+					top: 10vh;
 				}
 
 				.splash-title {
 					color: #fff !important;
 					font-size: 6em !important;
-					padding-bottom: 14px;
-
 				}
 
 				.splash-subtitle {
@@ -118,16 +116,15 @@
 					text-shadow: none !important;
 					font-weight: lighter;
 					font-size: 3em;
-					padding: 14px;
+					padding: 20px;
 
 				}
 
 				.splash-description-container {
 					position: relative;
-					padding: 10px 0px;
-					width: 50%;
-					left: 25%;
-					padding: 14px;
+					width: 40%;
+					left: 30%;
+					padding: 20px;
 				}
 
 				.splash-description {
@@ -139,6 +136,15 @@
 					font-size: 1.4em;
 					line-height: auto;
 				}
+
+				.splash-byline {
+					color: #fff !important;
+					text-shadow: none !important;
+					font-weight: lighter;
+					font-size: 1.2em;
+					padding: 20px;
+				}
+
 
 				.glyphicon:hover {
 					color: #fff !important;
@@ -221,6 +227,38 @@
 				    }
 				}
 
+				@media all and (max-width:1440px) {
+					.splash-text-container {
+						width: 70%;
+						left: 15%;
+						top: 8vh;
+					}
+					.splash-title {
+						font-size: 6em !important;
+						padding-bottom: 14px;
+					}
+
+					.splash-subtitle {
+						font-size: 3em !important;
+						padding: 14px 0px;
+					}
+					.splash-description-container {
+						width: 50%;
+						left: 25%;
+						padding: 14px 0px;
+					}
+
+					.splash-description {
+						font-size: 1.4em;
+						padding: 14px 0px;
+					}
+
+					.splash-byline {
+						font-size: 1.4em;
+						padding: 12px 0px;
+					}
+				}
+
 				/* Medium Devices, Desktops */
 				@media all and (max-width : 1024px) {
 					.splash-text-container {
@@ -245,6 +283,11 @@
 
 					.splash-description {
 						font-size: 1.4em;
+						padding: 12px 0px;
+					}
+
+					.splash-byline {
+						font-size: 1.2em;
 						padding: 12px 0px;
 					}
 				}
@@ -275,6 +318,11 @@
 						font-size: 1.4em;
 						padding: 16px 0px;
 					}
+
+					.splash-byline {
+						font-size: 1.2em;
+						padding: 16px 0px;
+					}
 				}
 
 				/* Extra small devices */
@@ -302,6 +350,11 @@
 					}
 					.splash-description {
 						font-size: 1em;
+					}
+
+					.splash-byline {
+						font-size: 1.0em;
+						padding: 10px 0px;
 					}
 				}
 
@@ -346,6 +399,7 @@
 					<div class="splash-description-container">
 						<h3 class="splash-description">In the summer of 2014, three friends drove from England to Mongolia in a 1.1-liter Suzuki Alto hatchback. Each day, they documented their experiences with photos, videos, and written journal entries. This map retraces their journey, one day at a time.</h3>
 					</div>
+					<h3 class="splash-byline">By Cooper Thomas</h3>
 				</div>
 
 				<a href="#" class="splash-arrow glyphicon glyphicon-menu-down">
