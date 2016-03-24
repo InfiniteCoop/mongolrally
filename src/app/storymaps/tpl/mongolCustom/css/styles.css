@@ -45,6 +45,9 @@ p {
 	position: fixed !important;
 	height: 100% !important;
 	width: 100% !important;
+	left: 0px !important;
+	top: 0px !important;
+	z-index: 1 !important;	
 }
 
 #mainStagePanelInner {
@@ -60,9 +63,10 @@ p {
 	position: fixed !important;
 	width: 45% !important;
 	left: 2%;
-	background-color: rgba(75,65,65,0.0) !important;
-	z-index: 1 !important;
+	background-color: transparent !important;
+	z-index: 2 !important;
 	border-right: 0px solid !important;
+		overflow:hidden !important;
 }
 
 .sidePanel .sections {
@@ -79,6 +83,7 @@ p {
 
 #sidePanelInner {
 	border-right: 0px !important;
+	padding-left: 50px !important;
 	overflow-y:scroll !important;
 
 }
@@ -272,7 +277,8 @@ div .scroll {
 .panel-button:hover {
 	background-color: rgba(0,151,251,0.9) !important;
 	color: rgba(255,255,255,1) !important;
-}
+]
+
 
 
 /* MOBILE STYLES */
