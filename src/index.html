@@ -77,7 +77,7 @@
 			</script>
 
 			<!-- Load fonts and custom stylesheets -->
-			<link href='https://fonts.googleapis.com/css?family=Muli:400,400italic|Lora:400italic,700italic' rel='stylesheet' type='text/css'>
+			<link href='https://fonts.googleapis.com/css?family=Muli:300,400,400italic|Lora:400italic,700italic' rel='stylesheet' type='text/css'>
 
 		</head>
 
@@ -137,12 +137,20 @@
 					line-height: auto;
 				}
 
+				.splash-byline-container {
+					position: relative;
+					padding: 20px;
+				}
+
 				.splash-byline {
 					color: #fff !important;
 					text-shadow: none !important;
-					font-weight: lighter;
+					font-weight: 300;
 					font-size: 1.2em;
-					padding: 20px;
+				}
+
+				.splash-byline strong {
+					font-weight: 400;
 				}
 
 
@@ -253,9 +261,12 @@
 						padding: 14px 0px;
 					}
 
+					.splash-byline-container {
+						padding: 14px 0px;
+					}		
+
 					.splash-byline {
 						font-size: 1.4em;
-						padding: 12px 0px;
 					}
 				}
 
@@ -286,9 +297,12 @@
 						padding: 12px 0px;
 					}
 
+					.splash-byline-container {
+						padding: 12px 0px;
+					}	
+
 					.splash-byline {
 						font-size: 1.2em;
-						padding: 12px 0px;
 					}
 				}
 
@@ -319,9 +333,14 @@
 						padding: 16px 0px;
 					}
 
+
+					.splash-byline-container {
+						padding: 16px 0px;
+					}	
+
+
 					.splash-byline {
 						font-size: 1.2em;
-						padding: 16px 0px;
 					}
 				}
 
@@ -352,9 +371,12 @@
 						font-size: 1em;
 					}
 
+					.splash-byline-container {
+						padding: 10px 0px;
+					}					
+
 					.splash-byline {
 						font-size: 1.0em;
-						padding: 10px 0px;
 					}
 				}
 
@@ -399,7 +421,10 @@
 					<div class="splash-description-container">
 						<h3 class="splash-description">In the summer of 2014, three friends drove from England to Mongolia in a 1.1-liter Suzuki Alto hatchback. Each day, they documented their experiences with photos, videos, and written journal entries. This map retraces their journey, one day at a time.</h3>
 					</div>
-					<h3 class="splash-byline">By Cooper Thomas</h3>
+					<div class="splash-byline-container">
+						<h3 class="splash-byline"><strong>Interactive map & photos</strong>| Cooper Thomas</h3>
+						<h3 class="splash-byline"><strong>Text </strong>| Nick Allen, Benjie Jenkins, & Cooper Thomas</h3>
+					</div>
 				</div>
 
 				<a href="#" class="splash-arrow glyphicon glyphicon-menu-down">
