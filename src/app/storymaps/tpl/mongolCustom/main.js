@@ -31,54 +31,75 @@ define([
 	// The application is ready
 	topic.subscribe("tpl-ready", function(){
 		
+		//Update text in 2D/3D toggle button
+		var setSwitcherText = function() {
+			if (window.appID == 'f9bfd5bb5f3244ce9e655de57b2e694d') {
+				$("#switcher-button").text("switch to 2d version");
+			}
+			else {
+				$("#switcher-button").text("swich to 3d version");
+			}
+		};			
+
+
+		var baseURL = window.location.href.split("?")[0];
+
+		//Switch between 2D and 3D versions of the map when the button is clicked. The two versions have 
+		// separate app IDs, which are set in index.html when the page loads. Due to a known bug, it's currently
+		// impossible to automatically scroll to the same section when the page refreshes. 
+		$("#map-switcher-container").click(function() {
+			if (window.appID == 'f9bfd5bb5f3244ce9e655de57b2e694d') {
+				window.location.replace(baseURL + "?map=2d");
+			}
+			else {
+				window.location.replace(baseURL);
+			}
+		});
+
+		//Trigger text update
+		setSwitcherText();
+
+		//Hide splash page on scroll/button click
 		var showApp = function () {
 			$(".splash").slideUp("800", function() {
 				$(".content-wrapper").delay(100).animate({"opacity":"1.0"},800);
 			});
 		};
 
-		//Trigger slide animation on button click
+		//Trigger slide animation
 		$(".splash-arrow").on('click',showApp);
 		$('.splash').on('mousewheel',showApp);
 
-		//Toggle index map when overview button is clicked
-		$("#bt").click(function() {
-			$(".sliding-panel").toggleClass("panel-active");
-			console.log("Sliding panel clicked");
-		});
 
-		// CONFIGURATION VARIABLES START
-		// Update the label fields for those used in your CSV file. Be sure that it matches
-		// exactly (including case)
+
+		/*  OVERVIEW MAP IN SIDEBAR  */
+
+		//Map CSV fields to JS variables;
 		var LabelField = 'Label';
 		var StoryIndexField = 'StoryIndex';
 		var ActiveField = 'Active';
-		// Change the colors of the default and active symbols on the map.
-		// Color documentation available here:
-		// https://dojotoolkit.org/reference-guide/1.10/dojo/_base/Color.html
+
+		// Set map marker colors
 		var defaultMarkerColor = new Color([100,100,100, 1]);
 		var activeMarkerColor = new Color([0,151,251, 1]);
 
-		// The path to CSV point file
+		// Path to CSV file
 		var csvPath = 'resources/index-map/index-map-layer.csv';
 
-		// variable stores currently selected graphic
+		// Variable to store selected graphic
 		var selectedGraphic = false;
 
-		// Removes the help text tooltip after the user first clicks on the map
+		// Remove the help text tooltip after the user first clicks on the map (not currently used)
 		$('#index-map').click(function(){
 			$('#index-map-helper').removeClass('active');
 		});
 
-		// Create default map extent
+		// Create default map extent and spatial reference
 		var startExtent = new esri.geometry.Extent(-420000, 4200000, 12200000, 7200000,
 			new esri.SpatialReference({wkid:102100}) );
 
-		// Create the index map
+		// Create the index map with minimal UI;
 		var indexMap = new Map('index-map',{
-			// Change the following options to set the default view of your index map.
-			// Option documentation is here:
-			// https://developers.arcgis.com/javascript/jsapi/map-amd.html#map1
 			slider: false,
 			logo: false,
 			showAttribution: false,
@@ -86,6 +107,7 @@ define([
 			fitExtent: true
 		});
 
+		//Disable all map controls
 		indexMap.on("load", function(){
 			console.log("Map loaded");
 			indexMap.disableMapNavigation();
@@ -95,10 +117,11 @@ define([
 			indexMap.disableScrollWheelZoom();
 
 
-			// Reset map extent when container is resized	
+			// Variables used for responsive map
 			var resizeTimer;
 			var height = $("#index-map").height();
 
+			// Redraw map if container width changes; don't redraw when height changes
 			indexMap.on("resize", function(){
 
 				if (height == $("#index-map").height()) {
@@ -119,6 +142,7 @@ define([
 		//Create line layer from Feature Service
 		var lineLayer = new FeatureLayer("http://services.arcgis.com/nzS0F0zdNLvs7nc8/arcgis/rest/services/Mongol_Rally_Route/FeatureServer/0");
 
+		//Create country layer from Feature Service
 		var countriesLayer = new FeatureLayer("http://services.arcgis.com/nzS0F0zdNLvs7nc8/arcgis/rest/services/VisitedCountriesGeneralized/FeatureServer/0");
 
 		// Load CSV File as point later
@@ -133,11 +157,10 @@ define([
 		renderer.addValue('TRUE', activeMarker);
 		indexMapLayer.setRenderer(renderer);
 
-
-		// Add countries Feature Layer to map
+		// Add countries layer to map
 		indexMap.addLayer(countriesLayer,0);
 
-		//Add path Feature Layer to map
+		//Add path layer to map
 		indexMap.addLayer(lineLayer,1);
 
 		// Add CSV layer to map
@@ -220,6 +243,5 @@ define([
 				'left': pos.x + pos.w
 			}).show();
 		}
-
 	});
 });
