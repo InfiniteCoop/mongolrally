@@ -275,6 +275,24 @@ div .scroll {
 	color: rgba(255,255,255,1) !important;
 }
 
+@media all and (min-width: 768px) {
+	#map-switcher-container {
+		height: 40px;
+		bottom: 40px;
+		width: auto;
+		position: fixed;
+		right: 40px;
+		z-index: 3;
+		font-weight: lighter;
+		font-size: 1em;
+	}
+
+	#switcher-button {
+		padding: 0px 10px !important;
+		font-weight: lighter !important;
+		font-size: 1em !important;
+	}
+}
 
 /* MOBILE STYLES */
 
