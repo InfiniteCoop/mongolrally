@@ -14,13 +14,19 @@
 	<link type="image/ico" rel="icon"  href="resources/tpl/viewer/icons/favicon.ico">
 
 
-			<meta name="description" content="Three friends. 10,000 miles. 20 countries. One Suzuki Alto. The story of a harebrained adventure from England to Mongolia.">
+	<meta name="description" content="Three friends. 10,000 miles. 20 countries. One Suzuki Alto. The story of a harebrained adventure from England to Mongolia.">
 
-			<!-- Facebook sharing -->
-			<meta property="og:type" content="article"/>
-			<meta property="og:title" content="The Great In-Between: A Mongol Rally Map Journal"/>
-			<meta property="og:description" content="Three friends. 10,000 miles. 20 countries. One Suzuki Alto. The story of a harebrained adventure from England to Mongolia."/>
-			<meta property="og:image" content="resources/img/launch-img.jpg"/>
+	<!-- Facebook sharing -->
+	<meta property="og:type" content="article"/>
+	<meta property="og:title" content="The Great In-Between: A Mongol Rally Map Journal"/>
+	<meta property="og:description" content="Three friends. 10,000 miles. 20 countries. One Suzuki Alto. The story of a harebrained adventure from England to Mongolia."/>
+	<meta property="og:image" content="resources/img/launch-img.jpg"/>
+
+	<!-- Twitter sharing -->
+	<meta name="twitter:card" content="summary"/>
+	<meta name="twitter:title" content="The Great In-Between: A Mongol Rally Map Journal"/>
+	<meta name="twitter:description" content="Three friends. 10,000 miles. 20 countries. One Suzuki Alto. The story of a harebrained adventure from England to Mongolia."/>
+	<meta name="twitter:image" content="resources/img/launch-img.jpg"/>
 
 		<!--
 			This application is released under the Apache License V2.0 by Esri http://www.esri.com/
@@ -31,16 +37,22 @@
 
 		<!-- Check browser compatibility; load corresponding app (2D or 3D)-->
 		<script type="text/javascript">
-			var appID;
+		var appID;
 
-			if (navigator.userAgent.match(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i)) {
-				console.log("Mobile device detected");
-				appID = '66271b7cbd24488aa1841c8633d6403c';
-			}
-			else {
-				console.log("Desktop device detected");
-				appID = 'f9bfd5bb5f3244ce9e655de57b2e694d';
-			}
+		if (!navigator.userAgent.match(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i) && (!window.location.search.toLowerCase().match('map=2d'))) {
+			console.log("Desktop device detected; loading 3D map");
+			appID = 'f9bfd5bb5f3244ce9e655de57b2e694d';	
+		}
+
+		else if (!navigator.userAgent.match(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i) && (window.location.search.toLowerCase().match('map=2d'))) {
+			console.log("Desktop device detected; loading 2D map");
+			appID = '1fe5bdf7a7d741b48605c995455c176b'
+		}
+
+		else {
+			console.log("Mobile device detected");
+			appID = '66271b7cbd24488aa1841c8633d6403c';
+		}
 		</script>
 
 		<script type="text/javascript">
@@ -77,265 +89,341 @@
 			</script>
 
 			<!-- Load fonts and custom stylesheets -->
-			<link href='https://fonts.googleapis.com/css?family=Muli:400,400italic|Lora:400italic,700italic' rel='stylesheet' type='text/css'>
+			<link href='https://fonts.googleapis.com/css?family=Muli:300,400,400italic|Lora:400italic,700italic' rel='stylesheet' type='text/css'>
 
 		</head>
 
 		<body class="claro">
 
+			<!-- Load splash page style right away -->
 			<style>
-				.splash {
-					background-image: url(resources/img/splash-bg.jpg);
-					background-position: bottom center;
-					position: fixed;
-					top: 0;
-					right: 0;
-					bottom: 0;
-					left: 0;
-					min-height: 360px;
-					z-index: 999;
-					background-size: cover;
-					background-attachment: fixed;
-					text-align: center;
+			.splash {
+				background-image: url(resources/img/splash-bg.jpg);
+				background-position: bottom center;
+				position: fixed;
+				font-family: 'Muli', sans-serif;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				left: 0;
+				min-height: 360px;
+				z-index: 999;
+				background-size: cover;
+				background-attachment: fixed;
+				text-align: center;
+			}
+
+			.splash-text-container {
+				position: relative;
+				width: 70%;
+				left: 15%;
+				top: 10vh;
+			}
+
+			.splash-title {
+				color: #fff !important;
+				font-size: 6em !important;
+			}
+
+			.splash-subtitle {
+				color: #fff !important;
+				text-shadow: none !important;
+				font-weight: lighter;
+				font-size: 3em;
+				padding: 20px;
+
+			}
+
+			.splash-description-container {
+				position: relative;
+				width: 40%;
+				left: 30%;
+				padding: 20px;
+			}
+
+			.splash-description {
+				font-family: 'Lora', serif !important;
+				font-weight: lighter;
+				font-style: italic !important;
+				color: #fff !important;
+				text-shadow: none !important;
+				font-size: 1.4em;
+				line-height: auto;
+			}
+
+			.splash-byline-container {
+				position: relative;
+				padding: 20px;
+			}
+
+			.splash-byline {
+				color: #fff !important;
+				text-shadow: none !important;
+				font-weight: 300;
+				font-size: 1.2em;
+			}
+
+			.splash-byline strong {
+				font-weight: 400;
+			}
+
+
+			.glyphicon:hover {
+				color: #fff !important;
+			}
+
+			a.splash-arrow {
+				text-align: center;
+				color: #fff;
+				font-size: 1.4em;
+				position: absolute;
+				top: 85%;
+				left: 50%;
+				margin-left: -25px;
+				padding: 10px;
+				width: 50px;
+				height: 50px;
+				line-height: 25px;
+				font-weight: bold;
+				border: 3px solid white;
+				-webkit-border-radius: 50%;
+				-moz-border-radius: 50%;
+				border-radius: 50%;
+
+				-webkit-transition-property: -webkit-transform;
+				-webkit-transition-duration: 1s;
+				-moz-transition-property: -moz-transform;
+				-moz-transition-duration: 1s;
+			}
+
+			a.splash-arrow:hover {
+				color: #fff !important;
+				text-decoration: none;
+				bottom: 65px;
+
+				-webkit-animation-name: pulse;
+				-moz-animation-name: pulse;
+				-webkit-animation-duration: 1.5s;
+				-moz-animation-duration: 1.5s;
+				-webkit-animation-iteration-count: infinite;
+				-moz-animation-iteration-count: infinite;
+				-webkit-animation-timing-function: linear;
+				-moz-animation-timing-function: linear;
+			}
+
+			a.splash-arrow:visited {
+				color: #fff !important;
+			}
+
+			@-webkit-keyframes pulse {   
+				0% {
+					-webkit-transform: scale(1);
+					transform: scale(1);
 				}
 
+				50% {
+					-webkit-transform: scale(1.2);
+					transform: scale(1.2);
+				}
+
+				100% {
+					-webkit-transform: scale(1);
+					transform: scale(1);
+				}
+			}
+
+			@-moz-keyframes pulse {    
+				0% {
+					-moz-transform: scale(1);
+					transform: scale(1);
+				}
+
+				50% {
+					-moz-transform: scale(1.2);
+					transform: scale(1.2);
+				}
+
+				100% {
+					-moz-transform: scale(1);
+					transform: scale(1);
+				}
+			}
+
+			@media all and (max-width:1440px) {
 				.splash-text-container {
-					position: relative;
 					width: 70%;
 					left: 15%;
 					top: 8vh;
 				}
-
 				.splash-title {
-					color: #fff !important;
 					font-size: 6em !important;
-					padding-bottom: 14px;
+					padding-bottom: 4px;
+				}
+
+				.splash-subtitle {
+					font-size: 3em !important;
+					padding: 0px 0px 12px 0px;
+				}
+				.splash-description-container {
+					width: 60%;
+					left: 20%;
+					padding: 12px 0px;
+				}
+
+				.splash-description {
+					font-size: 1.4em;
+					padding: 12px 0px;
+				}
+
+				.splash-byline-container {
+					padding: 12px 0px;
+				}		
+
+				.splash-byline {
+					font-size: 1.2em;
+				}
+			}
+
+			/* Medium Devices, Desktops */
+			@media all and (max-width : 1024px) {
+				.splash-text-container {
+					width: 94%;
+					left: 3%;
+					top: 6vh;
+				}
+				.splash-title {
+					font-size: 6em !important;
+					padding-bottom: 12px;
+				}
+
+				.splash-subtitle {
+					font-size: 3em !important;
+					padding: 12px 0px;
+				}
+				.splash-description-container {
+					width: 80%;
+					left: 10%;
+					padding: 12px 0px;
+				}
+
+				.splash-description {
+					font-size: 1.4em;
+					padding: 12px 0px;
+				}
+
+				.splash-byline-container {
+					padding: 12px 0px;
+				}	
+
+				.splash-byline {
+					font-size: 1.2em;
+				}
+			}
+
+
+			/* Small devices */
+			@media all and (max-width: 769px) {
+
+				.splash-text-container {
+					width: 94%;
+					left: 3%;
+					top: 6vh;
+				}
+				.splash-title {
+					font-size: 6em !important;
+					padding-bottom: 16px;
+				}
+
+				.splash-subtitle {
+					font-size: 3em !important;
+					padding: 16px 0px;
+				}
+				.splash-description-container {
+					padding: 16px 0px;
+				}
+
+				.splash-description {
+					font-size: 1.4em;
+					padding: 16px 0px;
+				}
+
+
+				.splash-byline-container {
+					padding: 16px 0px;
+				}	
+
+
+				.splash-byline {
+					font-size: 1.2em;
+				}
+			}
+
+			/* Extra small devices */
+			@media all and (max-width: 480px) {
+
+				.splash-text-container {
+					width: 84%;
+					left: 8%;
+					top: 6vh;
+				}
+				.splash-title {
+					font-size: 3em !important;
+					padding-bottom: 10px;
+				}
+
+				.splash-subtitle {
+					font-size: 1.4em !important;
+					padding: 10px 0px;
+				}
+
+				.splash-description-container {
+					padding: 10px 0px;
+					width: 100%;
+					left: 0%;
+				}
+				.splash-description {
+					font-size: 1em;
+				}
+
+				.splash-byline-container {
+					padding: 10px 0px;
+				}					
+
+				.splash-byline {
+					font-size: 1.0em;
+				}
+			}
+
+			/* Extra small devices */
+			@media all and (max-width: 320px) {
+
+				.splash-text-container {
+					width: 84%;
+					left: 8%;
+					top: 6vh;
+				}
+				.splash-title {
+					font-size: 2.4em !important;
+					padding: 8px 0px;
 
 				}
 
 				.splash-subtitle {
-					color: #fff !important;
-					text-shadow: none !important;
-					font-weight: lighter;
-					font-size: 3em;
-					padding: 14px;
+					font-size: 1.2em !important;
+					padding: 8px 0px;
 
 				}
 
 				.splash-description-container {
-					position: relative;
-					padding: 10px 0px;
-					width: 50%;
-					left: 25%;
-					padding: 14px;
-				}
+					width: 94%;
+					left: 3%;
+					padding: 8px 0px;
 
+				}
 				.splash-description {
-					font-family: 'Lora', serif !important;
-					font-weight: lighter;
-					font-style: italic !important;
-					color: #fff !important;
-					text-shadow: none !important;
-					font-size: 1.4em;
-					line-height: auto;
+					font-size: 1em;
 				}
-
-				.glyphicon:hover {
-					color: #fff !important;
-				}
-
-				a.splash-arrow {
-					text-align: center;
-					color: #fff;
-					font-size: 1.4em;
-					position: absolute;
-					top: 85%;
-					left: 50%;
-					margin-left: -25px;
-					padding: 10px;
-					width: 50px;
-					height: 50px;
-					line-height: 25px;
-					font-weight: bold;
-					border: 3px solid white;
-					-webkit-border-radius: 50%;
-					-moz-border-radius: 50%;
-					border-radius: 50%;
-
-				    -webkit-transition-property: -webkit-transform;
-				    -webkit-transition-duration: 1s;
-				    -moz-transition-property: -moz-transform;
-				    -moz-transition-duration: 1s;
-				}
-
-				a.splash-arrow:hover {
-					color: #fff !important;
-					text-decoration: none;
-					bottom: 65px;
-
-					    -webkit-animation-name: pulse;
-				    -moz-animation-name: pulse;
-				    -webkit-animation-duration: 1.5s;
-				    -moz-animation-duration: 1.5s;
-				    -webkit-animation-iteration-count: infinite;
-				    -moz-animation-iteration-count: infinite;
-				    -webkit-animation-timing-function: linear;
-				    -moz-animation-timing-function: linear;
-				}
-
-				a.splash-arrow:visited {
-					color: #fff !important;
-				}
-
-				@-webkit-keyframes pulse {   
-				    0% {
-				        -webkit-transform: scale(1);
-				        transform: scale(1);
-				    }
-
-				    50% {
-				        -webkit-transform: scale(1.2);
-				        transform: scale(1.2);
-				    }
-
-				    100% {
-				        -webkit-transform: scale(1);
-				        transform: scale(1);
-				    }
-				}
-
-				@-moz-keyframes pulse {    
-				    0% {
-				        -moz-transform: scale(1);
-				        transform: scale(1);
-				    }
-
-				    50% {
-				        -moz-transform: scale(1.2);
-				        transform: scale(1.2);
-				    }
-
-				    100% {
-				        -moz-transform: scale(1);
-				        transform: scale(1);
-				    }
-				}
-
-				/* Medium Devices, Desktops */
-				@media all and (max-width : 1024px) {
-					.splash-text-container {
-						width: 94%;
-						left: 3%;
-						top: 6vh;
-					}
-					.splash-title {
-						font-size: 6em !important;
-						padding-bottom: 12px;
-					}
-
-					.splash-subtitle {
-						font-size: 3em !important;
-						padding: 12px 0px;
-					}
-					.splash-description-container {
-						width: 80%;
-						left: 10%;
-						padding: 12px 0px;
-					}
-
-					.splash-description {
-						font-size: 1.4em;
-						padding: 12px 0px;
-					}
-				}
-
-
-				/* Small devices */
-				@media all and (max-width: 769px) {
-
-					.splash-text-container {
-						width: 94%;
-						left: 3%;
-						top: 6vh;
-					}
-					.splash-title {
-						font-size: 6em !important;
-						padding-bottom: 16px;
-					}
-
-					.splash-subtitle {
-						font-size: 3em !important;
-						padding: 16px 0px;
-					}
-					.splash-description-container {
-						padding: 16px 0px;
-					}
-
-					.splash-description {
-						font-size: 1.4em;
-						padding: 16px 0px;
-					}
-				}
-
-				/* Extra small devices */
-				@media all and (max-width: 480px) {
-
-					.splash-text-container {
-						width: 84%;
-						left: 8%;
-						top: 6vh;
-					}
-					.splash-title {
-						font-size: 3em !important;
-						padding-bottom: 10px;
-					}
-
-					.splash-subtitle {
-						font-size: 1.4em !important;
-						padding: 10px 0px;
-					}
-
-					.splash-description-container {
-						padding: 10px 0px;
-						width: 100%;
-						left: 0%;
-					}
-					.splash-description {
-						font-size: 1em;
-					}
-				}
-
-				/* Extra small devices */
-				@media all and (max-width: 320px) {
-
-					.splash-text-container {
-						width: 84%;
-						left: 8%;
-						top: 6vh;
-					}
-					.splash-title {
-						font-size: 2.4em !important;
-						padding: 8px 0px;
-
-					}
-
-					.splash-subtitle {
-						font-size: 1.2em !important;
-						padding: 8px 0px;
-
-					}
-
-					.splash-description-container {
-						width: 94%;
-						left: 3%;
-						padding: 8px 0px;
-
-					}
-					.splash-description {
-						font-size: 1em;
-					}
-				}
-
+			}
 			</style>
 
 			<!-- Custom splash page -->
@@ -345,6 +433,10 @@
 					<h2 class="splash-subtitle">– A Mongol Rally Map Journal –</h2>
 					<div class="splash-description-container">
 						<h3 class="splash-description">In the summer of 2014, three friends drove from England to Mongolia in a 1.1-liter Suzuki Alto hatchback. Each day, they documented their experiences with photos, videos, and written journal entries. This map retraces their journey, one day at a time.</h3>
+					</div>
+					<div class="splash-byline-container">
+						<h3 class="splash-byline"><strong>Maps & photos </strong>| Cooper Thomas</h3>
+						<h3 class="splash-byline"><strong>Text </strong>| Nick Allen & Benjie Jenkins</h3>
 					</div>
 				</div>
 
@@ -430,6 +522,11 @@
 									<div class="medias">
 										<!-- Maps and media injected here -->
 									</div>
+
+									<div id="map-switcher-container">
+										<p class="panel-button" id="switcher-button"></p>
+									</div>	
+
 									<div id="mainStageLoadingIndicator" class="loadingIndicator">
 										<img src="resources/tpl/viewer/icons/gears.gif" />
 									</div>
