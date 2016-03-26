@@ -30,6 +30,10 @@ define([
 
 	// The application is ready
 	topic.subscribe("tpl-ready", function(){
+
+		//Overview map hidden by default
+		$(".sliding-panel").toggleClass("panel-active");
+
 		
 		//Update text in 2D/3D toggle button
 		var setSwitcherText = function() {
@@ -71,6 +75,11 @@ define([
 		$('.splash').on('mousewheel',showApp);
 
 
+		//Toggle index map when overview button is clicked
+		$("#bt").click(function() {
+			$(".sliding-panel").toggleClass("panel-active");
+			console.log("Sliding panel clicked");
+		});
 
 		/*  OVERVIEW MAP IN SIDEBAR  */
 
