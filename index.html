@@ -1,6 +1,666 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
-	<meta http-equiv="refresh" content="0; url=http://infinitecoop.github.io/mongolrally/deploy/index.html" />
-	</head>
-	</html>
+	<title>The Great In-Between: A Mongol Rally Map Journal</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+
+	<meta name="fragment" content="!">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<meta name="author" content="Cooper Thomas">
+
+	<link type="image/ico" rel="shortcut icon" href="resources/tpl/viewer/icons/favicon.ico">
+	<link type="image/ico" rel="icon"  href="resources/tpl/viewer/icons/favicon.ico">
+
+
+	<meta name="description" content="Three friends. 10,000 miles. 20 countries. One Suzuki Alto. The story of a harebrained adventure from England to Mongolia.">
+
+	<!-- Facebook sharing -->
+	<meta property="og:type" content="article"/>
+	<meta property="og:title" content="The Great In-Between: A Mongol Rally Map Journal"/>
+	<meta property="og:description" content="Three friends. 10,000 miles. 20 countries. One Suzuki Alto. The story of a harebrained adventure from England to Mongolia."/>
+	<meta property="og:image" content="resources/img/launch-img.jpg"/>
+
+	<!-- Twitter sharing -->
+	<meta name="twitter:card" content="summary"/>
+	<meta name="twitter:title" content="The Great In-Between: A Mongol Rally Map Journal"/>
+	<meta name="twitter:description" content="Three friends. 10,000 miles. 20 countries. One Suzuki Alto. The story of a harebrained adventure from England to Mongolia."/>
+	<meta name="twitter:image" content="resources/img/launch-img.jpg"/>
+
+		<!--
+			This application is released under the Apache License V2.0 by Esri http://www.esri.com/
+			Checkout the project repository on GitHub to access source code, latest revision, developer documentation, FAQ and tips
+			https://github.com/Esri/map-journal-storytelling-template-js
+		-->
+
+
+		<!-- Check browser compatibility; load corresponding app (2D or 3D)-->
+		<script type="text/javascript">
+		var appID;
+
+		if (!navigator.userAgent.match(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i) && (!window.location.search.toLowerCase().match('map=2d'))) {
+			console.log("Desktop device detected; loading 3D map");
+			appID = 'f9bfd5bb5f3244ce9e655de57b2e694d';	
+		}
+
+		else if (!navigator.userAgent.match(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i) && (window.location.search.toLowerCase().match('map=2d'))) {
+			console.log("Desktop device detected; loading 2D map");
+			appID = '1fe5bdf7a7d741b48605c995455c176b'
+		}
+
+		else {
+			console.log("Mobile device detected");
+			appID = '66271b7cbd24488aa1841c8633d6403c';
+		}
+		</script>
+
+		<script type="text/javascript">
+			//-------------------------------------------------------------------------------------------
+			//     Application configuration (ignored on ArcGIS Online, Portal and during development)
+			//-------------------------------------------------------------------------------------------
+			var configOptions = {
+				// Enter an application ID created through the Map Journal builder
+				appid: appID,
+				// Optionally to secure Journal's access, use an OAuth application ID (example: 6gyOg377fLUhUk6f)
+				// User will need to sign-in to access the viewer even if your application is public
+				oAuthAppId: "",
+				// Optionally, to use the appid URL parameter, configure authorizedOwners to reference
+				//    members whose stories can be viewed by this storytelling app.
+				// To authorize stories owned by...
+				//    specific members: use ["member"] or ["member1", "member2", ...]
+				//    any ArcGIS member: use ["*"]
+				//    any member of one or more organizations: use ["[orgID]"] or ["[orgID1]", "[orgID2]", ...] (Note the use of brackets in this case, e.g., ["[nzS0F0zdNLvs7nc8]"])
+				//        You can get your orgID by going to My Organization and clicking Find...The most viewed items in the organization.
+				//        Your orgID will be shown in the search box.
+				authorizedOwners: [""]
+			};
+			// Optionally sharing and proxy URLs can be configured in app/config.js. This is only required
+			//  when the webmap is not hosted on ArcGIS Online or a Portal for ArcGIS instance and the application isn't deployed as /home/MapJournal/ or /apps/MapJournal/.
+			// Optionally Bing Maps key, Geometry and Geocode service's URLs can be configured in app/config.js. This is only required
+			//  if the Organization or Portal for ArcGIS instance default configuration has to be overwritten.
+			</script>
+
+			<script type="text/javascript">
+			var app = {
+				version: '1.7.0',
+				pathJSAPI: '//js.arcgis.com/3.16/'
+			};
+			</script>
+
+			<!-- Load fonts and custom stylesheets -->
+			<link href='https://fonts.googleapis.com/css?family=Muli:300,400,400italic|Lora:400italic,700italic' rel='stylesheet' type='text/css'>
+
+		</head>
+
+		<body class="claro">
+
+			<!-- Load splash page style right away -->
+			<style>
+			.splash {
+				background-image: url(resources/img/splash-bg.jpg);
+				background-position: bottom center;
+				position: fixed;
+				font-family: 'Muli', sans-serif;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				left: 0;
+				min-height: 360px;
+				z-index: 999;
+				background-size: cover;
+				background-attachment: fixed;
+				text-align: center;
+			}
+
+			.splash-text-container {
+				position: relative;
+				width: 70%;
+				left: 15%;
+				top: 10vh;
+			}
+
+			.splash-title {
+				color: #fff !important;
+				font-size: 6em !important;
+			}
+
+			.splash-subtitle {
+				color: #fff !important;
+				text-shadow: none !important;
+				font-weight: lighter;
+				font-size: 3em;
+				padding: 20px;
+
+			}
+
+			.splash-description-container {
+				position: relative;
+				width: 40%;
+				left: 30%;
+				padding: 20px;
+			}
+
+			.splash-description {
+				font-family: 'Lora', serif !important;
+				font-weight: lighter;
+				font-style: italic !important;
+				color: #fff !important;
+				text-shadow: none !important;
+				font-size: 1.4em;
+				line-height: auto;
+			}
+
+			.splash-byline-container {
+				position: relative;
+				padding: 20px;
+			}
+
+			.splash-byline {
+				color: #fff !important;
+				text-shadow: none !important;
+				font-weight: 300;
+				font-size: 1.2em;
+			}
+
+			.splash-byline strong {
+				font-weight: 400;
+			}
+
+
+			.glyphicon:hover {
+				color: #fff !important;
+			}
+
+			a.splash-arrow {
+				text-align: center;
+				color: #fff;
+				font-size: 1.4em;
+				position: absolute;
+				top: 85%;
+				left: 50%;
+				margin-left: -25px;
+				padding: 10px;
+				width: 50px;
+				height: 50px;
+				line-height: 25px;
+				font-weight: bold;
+				border: 3px solid white;
+				-webkit-border-radius: 50%;
+				-moz-border-radius: 50%;
+				border-radius: 50%;
+
+				-webkit-transition-property: -webkit-transform;
+				-webkit-transition-duration: 1s;
+				-moz-transition-property: -moz-transform;
+				-moz-transition-duration: 1s;
+			}
+
+			a.splash-arrow:hover {
+				color: #fff !important;
+				text-decoration: none;
+				bottom: 65px;
+
+				-webkit-animation-name: pulse;
+				-moz-animation-name: pulse;
+				-webkit-animation-duration: 1.5s;
+				-moz-animation-duration: 1.5s;
+				-webkit-animation-iteration-count: infinite;
+				-moz-animation-iteration-count: infinite;
+				-webkit-animation-timing-function: linear;
+				-moz-animation-timing-function: linear;
+			}
+
+			a.splash-arrow:visited {
+				color: #fff !important;
+			}
+
+			@-webkit-keyframes pulse {   
+				0% {
+					-webkit-transform: scale(1);
+					transform: scale(1);
+				}
+
+				50% {
+					-webkit-transform: scale(1.2);
+					transform: scale(1.2);
+				}
+
+				100% {
+					-webkit-transform: scale(1);
+					transform: scale(1);
+				}
+			}
+
+			@-moz-keyframes pulse {    
+				0% {
+					-moz-transform: scale(1);
+					transform: scale(1);
+				}
+
+				50% {
+					-moz-transform: scale(1.2);
+					transform: scale(1.2);
+				}
+
+				100% {
+					-moz-transform: scale(1);
+					transform: scale(1);
+				}
+			}
+
+			@media all and (max-width:1440px) {
+				.splash-text-container {
+					width: 70%;
+					left: 15%;
+					top: 8vh;
+				}
+				.splash-title {
+					font-size: 6em !important;
+					padding-bottom: 4px;
+				}
+
+				.splash-subtitle {
+					font-size: 3em !important;
+					padding: 0px 0px 12px 0px;
+				}
+				.splash-description-container {
+					width: 60%;
+					left: 20%;
+					padding: 12px 0px;
+				}
+
+				.splash-description {
+					font-size: 1.4em;
+					padding: 12px 0px;
+				}
+
+				.splash-byline-container {
+					padding: 12px 0px;
+				}		
+
+				.splash-byline {
+					font-size: 1.2em;
+				}
+			}
+
+			/* Medium Devices, Desktops */
+			@media all and (max-width : 1024px) {
+				.splash-text-container {
+					width: 94%;
+					left: 3%;
+					top: 6vh;
+				}
+				.splash-title {
+					font-size: 6em !important;
+					padding-bottom: 12px;
+				}
+
+				.splash-subtitle {
+					font-size: 3em !important;
+					padding: 12px 0px;
+				}
+				.splash-description-container {
+					width: 80%;
+					left: 10%;
+					padding: 12px 0px;
+				}
+
+				.splash-description {
+					font-size: 1.4em;
+					padding: 12px 0px;
+				}
+
+				.splash-byline-container {
+					padding: 12px 0px;
+				}	
+
+				.splash-byline {
+					font-size: 1.2em;
+				}
+			}
+
+
+			/* Small devices */
+			@media all and (max-width: 769px) {
+
+				.splash-text-container {
+					width: 94%;
+					left: 3%;
+					top: 6vh;
+				}
+				.splash-title {
+					font-size: 6em !important;
+					padding-bottom: 16px;
+				}
+
+				.splash-subtitle {
+					font-size: 3em !important;
+					padding: 16px 0px;
+				}
+				.splash-description-container {
+					padding: 16px 0px;
+				}
+
+				.splash-description {
+					font-size: 1.4em;
+					padding: 16px 0px;
+				}
+
+
+				.splash-byline-container {
+					padding: 16px 0px;
+				}	
+
+
+				.splash-byline {
+					font-size: 1.2em;
+				}
+			}
+
+			/* Extra small devices */
+			@media all and (max-width: 480px) {
+
+				.splash-text-container {
+					width: 84%;
+					left: 8%;
+					top: 6vh;
+				}
+				.splash-title {
+					font-size: 3em !important;
+					padding-bottom: 10px;
+				}
+
+				.splash-subtitle {
+					font-size: 1.4em !important;
+					padding: 10px 0px;
+				}
+
+				.splash-description-container {
+					padding: 10px 0px;
+					width: 100%;
+					left: 0%;
+				}
+				.splash-description {
+					font-size: 1em;
+				}
+
+				.splash-byline-container {
+					padding: 10px 0px;
+				}					
+
+				.splash-byline {
+					font-size: 1.0em;
+				}
+			}
+
+			/* Extra small devices */
+			@media all and (max-width: 320px) {
+
+				.splash-text-container {
+					width: 84%;
+					left: 8%;
+					top: 6vh;
+				}
+				.splash-title {
+					font-size: 2.4em !important;
+					padding: 8px 0px;
+
+				}
+
+				.splash-subtitle {
+					font-size: 1.2em !important;
+					padding: 8px 0px;
+
+				}
+
+				.splash-description-container {
+					width: 94%;
+					left: 3%;
+					padding: 8px 0px;
+
+				}
+				.splash-description {
+					font-size: 1em;
+				}
+			}
+			</style>
+
+			<!-- Custom splash page -->
+			<div class="splash">
+				<div class="splash-text-container">
+					<h1 class="splash-title">The Great In-Between</h1>
+					<h2 class="splash-subtitle">– A Mongol Rally Map Journal –</h2>
+					<div class="splash-description-container">
+						<h3 class="splash-description">In the summer of 2014, three friends drove from England to Mongolia in a 1.1-liter Suzuki Alto hatchback. Each day, they documented their experiences with photos, videos, and written journal entries. This map retraces their journey, one day at a time.</h3>
+					</div>
+					<div class="splash-byline-container">
+						<h3 class="splash-byline"><strong>Maps & photos </strong>| Cooper Thomas</h3>
+						<h3 class="splash-byline"><strong>Text </strong>| Nick Allen & Benjie Jenkins</h3>
+					</div>
+				</div>
+
+				<a href="#" class="splash-arrow glyphicon glyphicon-menu-down">
+				</a>
+			</div>
+
+			<div class="content-wrapper">
+				<!-- Builder top panel is injected here -->
+				<div id="builderPanel" class="hide mainViewAboveMap"></div>
+
+				<!-- Content -->
+				<div id="contentPanel" class="mobileView">
+					<table class="containerPanelInner">
+						<tr>
+							<!-- Text panel of the Side Panel layout -->
+							<td id="sidePanel">
+								<div id="sidePanelInner" class="mainViewSideMap sidePanel sectionPanel">
+									<div class="navDots vertical">
+										<!-- navigation dots -->
+									</div>
+									<div class="header" aria-hidden="true">
+										<div class="linkSocialContainer">
+											<span class="linkContainer"></span>
+											<span class="shareBtns">
+												<i class="shareIcon share_facebook icon-facebook-squared" tabindex="-1"></i>
+												<i class="shareIcon share_twitter icon-twitter" tabindex="-1"></i>
+												<i class="shareIcon share_bitly icon-link" tabindex="-1"></i>
+											</span>
+										</div>
+										<table class="logoContainer">
+											<tr>
+												<td class="logoWrapper">
+													<a class="logoLink" target="_blank" tabindex="-1">
+														<img class="logoImg"/>
+													</a>
+												</td>
+											</tr>
+										</table>
+									</div>
+
+<!-- 									<span class="error-status">
+										<button class="btn btn-xs btn-warning check-story"></button>
+										<button class="btn btn-xs btn-warning share-story"></button>
+									</span> -->
+
+									<!-- Sliding panel containing index map -->
+									<div class="sliding-panel">
+										<div id="index-map">
+											<p id="index-map-info"></p>
+										</div>
+									</div>
+									<p class="panel-button" id="bt">overview map</p>
+
+									<div class="sectionsWrapper">
+										<div class="sections">
+											<!-- sections injected here -->
+										</div>
+									</div>
+<!-- 									<div class="builder builder-content-panel">
+										<div class="builder-content-panel-group builder-add">
+											<div class="builder-btn"></div>
+											<div class="builder-lbl"></div>
+										</div>
+										<div class="builder-content-panel-group builder-organize">
+											<div class="builder-btn"></div>
+											<div class="builder-lbl"></div>
+										</div>
+									</div> -->
+									<!-- <div class="resizer"></div> -->
+									<div class="scroll">
+										<div class="scrollInner" data-toggle="tooltip"></div>
+									</div>
+									<div class="builder-mask"></div>
+									<div class="firstAddExplain"></div>
+								</div>
+							</td>
+							<!-- Map -->
+							<td id="mainStagePanel">
+
+								<div id="mainStagePanelInner">
+
+									<div class="medias">
+										<!-- Maps and media injected here -->
+									</div>
+
+									<div id="map-switcher-container">
+										<p class="panel-button" id="switcher-button"></p>
+									</div>	
+
+									<div id="mainStageLoadingIndicator" class="loadingIndicator">
+										<img src="resources/tpl/viewer/icons/gears.gif" />
+									</div>
+									<!-- Back button -->
+									<div class="mediaBackContainer">
+										<div class="backButton">
+											<div class="backArrow"></div>
+											<span class="backLbl"></span>
+										</div>
+									</div>
+									<!-- Builder -->
+									<div id="builderQuotes" class="centerAlignOnFloat"></div>
+									<div id="builderLanding" class="centerAlignOnFloat"></div>
+									<div id="builderHelp" class="centerAlignOnFloat"></div>
+									<div class="firstAddExplain"></div>
+									<!-- Autoplay -->
+									<div id="autoplay" class="autoplay"></div>
+								</div>
+							</td>
+						</tr>
+					</table>
+				</div>
+				<!-- /Content -->
+
+				<div id="floatingPanel" class="floatingPanel sectionPanel">
+					<div class="backdrop"></div>
+					<!-- <div class="header" aria-hidden="true">
+						<div class="linkSocialContainer">
+							<span class="linkContainer"></span>
+							<span class="shareBtns">
+								<i class="shareIcon blackHover share_facebook icon-facebook-squared" title="Share on Facebook" tabindex="-1"></i>
+								<i class="shareIcon blackHover share_twitter icon-twitter" title="Share on Twitter" tabindex="-1"></i>
+								<i class="shareIcon blackHover share_bitly icon-link" title="Share a short link" tabindex="-1"></i>
+								<button type="button" class="switchBuilder btn btn-xs btn-primary" tabindex="-1"></button>
+							</span>
+						</div>
+						<table class="logoContainer">
+							<tr>
+								<td class="logoWrapper">
+									<a class="logoLink" target="_blank" tabindex="-1">
+										<img class="logoImg"/>
+									</a>
+								</td>
+							</tr>
+						</table> -->
+					</div>
+
+					<div class="appTitle" tabindex="-1" aria-hidden="true"></div>
+<!-- 					<span class="error-status">
+						<button class="btn btn-xs btn-warning check-story"></button>
+						<button class="btn btn-xs btn-warning share-story"></button>
+					</span> -->
+					<div class="separator"></div>
+					<div class="sections">
+						<div class="swiper-container">
+							<div class="swiper-wrapper">
+								<!-- sections injected here -->
+							</div>
+						</div>
+					</div>
+<!-- 					<div class="builder builder-content-panel">
+						<div class="builder-content-panel-group builder-add">
+							<div class="builder-btn"></div>
+							<div class="builder-lbl"></div>
+						</div>
+						<div class="builder-content-panel-group builder-organize">
+							<div class="builder-btn"></div>
+							<div class="builder-lbl"></div>
+						</div>
+					</div> -->
+					<div class="navDots vertical">
+						<!-- navigation dots -->
+					</div>
+					<div class="scroll">
+						<div class="scrollInner" data-toggle="tooltip"></div>
+					</div>
+					<div class="builder-mask"></div>
+					<div class="firstAddExplain"></div>
+				</div>
+
+				<!-- Mobile -->
+				<div id="mobileView" class="floatingSwiper">
+					<div class="swiper-container">
+						<div class="backdrop"></div>
+						<div class="embed-btn-container embed-btn-left">
+							<div class="embed-btn"></div>
+						</div>
+						<div class="swiper-wrapper">
+							<!-- sections injected here -->
+						</div>
+						<div class="embed-btn-container embed-btn-right">
+							<div class="embed-btn"></div>
+						</div>
+					</div>
+					<div class="header">
+						<div class="backdrop"></div>
+						<div class="linkSocialContainer">
+							<span class="linkContainer"></span>
+							<span class="shareBtns">
+								<i class="shareIcon share_facebook icon-facebook-squared"></i>
+								<i class="shareIcon share_twitter icon-twitter"></i>
+								<i class="shareIcon share_bitly icon-link"></i>
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			<div id="loadingOverlay"></div>
+			<div id="loadingIndicator" class="loadingIndicator">
+				<img src="resources/tpl/viewer/icons/gears.gif" />
+			</div>
+			<div id="loadingMessage">Loading. Patience is a virtue.</div>
+
+			<!-- Share dialog -->
+			<div class="modal fade shareDialog" id="shareDialog" role="dialog" data-backdrop="static" tabindex="-1"></div>
+
+			<!-- Builder views are injected here -->
+			<div id="builder-views"></div>
+
+			<!-- Fatal error box -->
+			<div id="fatalError">
+				<table border="0">
+					<tr>
+						<td width="70px" align="center" id="fatalError-icon"></td>
+						<td id="fatalError-msg">
+							<b class="error-title"></b>
+							<p class="error-msg"></p>
+						</td>
+					</tr>
+				</table>
+			</div>
+
+			<script type="text/javascript" src="app/main-config.js"></script>
+		</body>
+		</html>
