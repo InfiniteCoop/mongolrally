@@ -1,0 +1,38 @@
+City,Country,Label,Night,Active,StoryIndex,lon,lat
+London,UK,"London, UK",0,FALSE,1,-0.157241821,51.48181052
+Siegburg,Germany,"Siegburg, Germany",1,FALSE,2,7.218446732,50.80799582
+Prague,Czech Republic,"Prague, Czech Republic",2,FALSE,3,14.41131592,50.06066539
+Klenova,Czech Republic,"Klenova, Czech Republic",3,FALSE,4,13.22221756,49.33093957
+Zadar,Croatia,"Zadar, Croatia",4,FALSE,5,15.2469635,44.10237923
+Dubrovnik,Croatia,"Dubrovnik, Croatia",5,FALSE,6,18.0821228,42.65517192
+Slavonski Brod,Croatia,"Slavonski Brod, Croatia",6,FALSE,7,17.99663544,45.16315823
+Nis,Serbia,"Nis, Serbia",7,FALSE,8,21.91231728,43.32973558
+Istanbul,Turkey,"Istanbul, Turkey",8,FALSE,9,28.93249512,41.02342728
+Cavundur,Turkey,"Cavundur, Turkey",11,FALSE,11,33.17167282,40.83004721
+Ordu,Turkey,"Ordu, Turkey",12,FALSE,12,37.82704353,41.02096657
+Batumi,Georgia,"Batumi, Georgia",13,FALSE,13,41.63475037,41.64007838
+Shorapani,Georgia,"Shorapani, Georgia",14,FALSE,14,43.12871933,42.09557938
+Balakan,Azerbaijan,"Balakan, Azerbaijan",15,FALSE,15,46.41208649,41.72648668
+Baku,Azerbaijan,"Baku, Azerbaijan",16,FALSE,16,49.84085083,40.37532068
+Caspian Sea,Caspian Sea,"Caspian Sea, Caspian Sea",19,FALSE,19,51.56982422,39.96870074
+Turkmenbashi,Turkmenistan,"Turkmenbashi, Turkmenistan",20,FALSE,20,52.99736023,40.00756582
+Ashgabat,Turkmenistan,"Ashgabat, Turkmenistan",21,FALSE,21,58.37568283,37.94324988
+Mary,Turkmenistan,"Mary, Turkmenistan",22,FALSE,22,61.85199738,37.58539817
+Bukhara,Uzbekistan,"Bukhara, Uzbekistan",23,FALSE,23,64.4234848,39.77356559
+Samarkand,Uzbekistan,"Samarkand, Uzbekistan",24,FALSE,24,66.98518753,39.66227082
+Tashkent,Uzbekistan,"Tashkent, Uzbekistan",25,FALSE,25,69.26467896,41.28399851
+Osh,Kyrgyzstan,"Osh, Kyrgyzstan",26,FALSE,26,72.79700875,40.53875368
+Uch-Terek,Kyrgyzstan,"Uch-Terek, Kyrgyzstan",27,FALSE,27,73.25460434,41.76132482
+Almaty,Kazakhstan,"Almaty, Kazakhstan",28,FALSE,28,76.93699837,43.27095614
+Sarkand,Kazakhstan,"Sarkand, Kazakhstan",29,FALSE,29,80.00347137,45.4591674
+Qalbatau,Kazakhstan,"Qalbatau, Kazakhstan",30,FALSE,30,81.53280258,49.35889908
+Barnaul,Russia,"Barnaul, Russia",31,FALSE,31,83.76431465,53.34722099
+Onguday,Russia,"Onguday, Russia",32,FALSE,32,86.13349915,50.75079375
+Tsagaannuur,Mongolia,"Tsagaannuur, Mongolia",33,FALSE,33,89.75542545,49.46901652
+Tolbo,Mongolia,"Tolbo, Mongolia",34,FALSE,34,90.8177948,48.3860692
+Darvi,Mongolia,"Darvi, Mongolia",35,FALSE,35,93.43322754,47.00367043
+Altai,Mongolia,"Altai, Mongolia",36,FALSE,36,96.25671387,46.3734643
+Buutsagaan,Mongolia,"Buutsagaan, Mongolia",37,FALSE,37,98.82217644,46.15463829
+Bayankhongor,Mongolia,"Bayankhongor, Mongolia",38,FALSE,38,100.7363892,46.15510241
+Erdenesant,Mongolia,"Erdenesant, Mongolia",39,FALSE,39,104.3385315,47.34882598
+Ulaanbaaatar,Mongolia,"Ulaanbaaatar, Mongolia",40,FALSE,40,106.8921661,47.91726243
