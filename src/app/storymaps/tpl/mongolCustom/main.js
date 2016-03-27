@@ -30,10 +30,6 @@ define([
 
 	// The application is ready
 	topic.subscribe("tpl-ready", function(){
-
-		//Overview map hidden by default
-		$(".sliding-panel").toggleClass("panel-active");
-
 		
 		//Update text in 2D/3D toggle button
 		var setSwitcherText = function() {
