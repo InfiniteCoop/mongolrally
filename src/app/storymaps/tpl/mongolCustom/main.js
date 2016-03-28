@@ -73,8 +73,14 @@ define([
 
 		//Toggle index map when overview button is clicked
 		$("#bt").click(function() {
-			$(".sliding-panel").toggleClass("panel-active");
+			$("#sliding-panel").toggleClass("panel-active");
 			console.log("Sliding panel clicked");
+			if ($("#sliding-panel").is(".panel-active")) {
+				$("#bt").text("show overview map");
+			}
+			else {
+				$("#bt").text("hide overview map");
+			}
 		});
 
 		/*  OVERVIEW MAP IN SIDEBAR  */
@@ -208,7 +214,9 @@ define([
 						g.attributes[ActiveField] = 'TRUE';
 						if(g.getDojoShape()){
 							selectedGraphic = g;
-							g.getDojoShape().moveToFront();
+							setTimeout(function() {
+								moveSelectedToFront();
+							},100);
 						}
 					}
 					else{
